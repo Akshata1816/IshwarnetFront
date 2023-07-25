@@ -1,0 +1,104 @@
+
+
+<mat-toolbar class="bg-color">
+    <button (click)="sidenav.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+     <mat-icon>menu</mat-icon>
+   </button>
+   <span>Ishwarnet</span>
+   <span class="example-spacer"></span>
+
+   <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn && user">
+    Welcome  {{ login.getUser().username }} </button>
+      <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">LogOut</button>
+    </mat-menu>
+
+   <!-- <a *ngIf="isLoggedIn"
+   (click)="logout()" 
+   class="example-icon favorite-icon font-size">
+    Logout
+   </a>
+
+   <a 
+   *ngIf="isLoggedIn && user"
+   style="margin-left: 20px;"
+   class="example-icon favorite-icon font-size">
+    {{ login.getUser().username }}
+   </a> -->
+
+ </mat-toolbar>
+
+ <!-- <mat-drawer-container autosize>
+  <mat-drawer #drawer  mode="side" class="set-width">
+    <mat-nav-list>
+      <mat-list-item class="text-style">
+        <button mat-button><mat-icon> dashboard </mat-icon> Dashboard</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button>
+          <mat-icon> Package </mat-icon> <a routerLink="/package"></a> Package
+      </button>
+         <button mat-button><mat-icon> Package </mat-icon> Package </button>
+      </mat-list-item>
+
+      <mat-list-item> <mat-icon> Customer </mat-icon> Customer
+        <button mat-button><mat-icon> Customer </mat-icon> Customer </button>
+      </mat-list-item>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 700px;">
+    <h1>welcome</h1>
+    <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content> 
+
+</mat-drawer-container>
+ -->
+
+ <mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" class="set-width">
+    <mat-action-list style="padding-left: 10px;">
+
+      <button mat-list-item routerLink="/accounts" (click)="sidenav.close()"> <mat-icon style="padding-top: 5px;"> dashboard </mat-icon> <span style="padding-left: 15px;">Dashboard</span> </button>
+      
+      <!-- <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header style="font-size: 12pt; font-family: Arial, sans-serif, Roboto;">
+          <mat-icon style="padding-left: -10px;"> auto_stories </mat-icon>Package
+          
+        </mat-expansion-panel-header>
+            <button mat-list-item routerLink="#">
+                <mat-icon>apple</mat-icon><span>iOS</span>
+            </button>
+            <button mat-list-item routerLink="#">
+                <mat-icon>android</mat-icon><span>Android</span>
+            </button>
+    </mat-expansion-panel>
+      
+      <button mat-list-item [class.mat-elevation-z0]="true"> 
+        <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> 
+        <span style="padding-left: 15px;"> Package <mat-icon class="ml-1" style="padding-top: 5px;">arrow_drop_down</mat-icon></span> 
+      
+      </button>
+ -->
+      
+      <button mat-list-item routerLink="/dashboard/addpackage" > <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> <span style="padding-left: 15px;"> Add Package </span> </button>
+      <button mat-list-item routerLink="/dashboard/viewpackage" > <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> <span style="padding-left: 15px;"> View Packages </span> </button>
+      <button mat-list-item routerLink="/dashboard/customer"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;">Customer</span>  </button>
+      <button mat-list-item routerLink="/dashboard/viewcustomers"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;"> View Customers </span>  </button>
+      <button mat-list-item routerLink="/dashboard/packagetocustomer"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;"> Assign Package </span>  </button>
+      <button mat-list-item routerLink="/dashboard/expense"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;"> Expenses </span>  </button>
+
+      
+    </mat-action-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="height: 600px;" (click)="sidenav.close()">
+
+      <router-outlet></router-outlet>
+   
+  </mat-sidenav-content>
+</mat-sidenav-container>

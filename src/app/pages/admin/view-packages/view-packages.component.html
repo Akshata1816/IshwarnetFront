@@ -1,0 +1,79 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row" style="margin-top: 25px">
+          <div class="col-md-6">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Enter here" #input>
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6" style="padding-left: 50px;">
+            <button mat-raised-button color="primary">Add Package</button>
+          </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-12">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i=index"> {{(paginatorRef.pageIndex*paginatorRef.pageSize)+(i+1)}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="plan_name">
+            <th mat-header-cell *matHeaderCellDef> Package Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.plan_name}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="pin_rate">
+              <th mat-header-cell *matHeaderCellDef> Pin Rate </th>
+              <td mat-cell *matCellDef="let element"> {{element.pin_rate}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="customer_amount">
+              <th mat-header-cell *matHeaderCellDef> Customer Rate </th>
+              <td mat-cell *matCellDef="let element"> {{element.customer_amount}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let element">  
+                <button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" style="padding-left: 10px;">
+                <mat-icon>edit</mat-icon>
+              </button>
+              </td>
+            </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+        </table>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
+  <mat-paginator style="width: 100%;"
+              [pageSizeOptions]="[2, 10, 20]" 
+              aria-label="Select page" #paginatorRef>
+</mat-paginator>
+  
+  

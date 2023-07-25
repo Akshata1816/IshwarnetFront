@@ -1,0 +1,48 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-12">
+                <h1 class="padding-format" style="padding-bottom: 15px;">Add New Expense</h1>
+                
+                {{expense | json}}
+                <form (ngSubmit)="formSubmit()">
+                    <label class="label-format padding-format">Expense Name</label><br>
+                    <mat-form-field class="full-width padding-format" appearance="outline">
+                        <input required
+                        [(ngModel)]="expense.expense_name"
+                        name="expense_name"
+                        matInput placeholder="Package Name" />
+                    </mat-form-field><br>
+
+                    <label class="label-format padding-format">Amount</label><br>
+                    <mat-form-field class="full-width padding-format" appearance="outline">
+                        <input 
+                        [(ngModel)]="expense.amount"
+                        name="amount"
+                        required matInput type="number" class="example-right-align" placeholder="0">
+                        <span matTextPrefix>₹&nbsp;</span>
+                        <span matTextSuffix>.00</span>
+                    </mat-form-field>
+
+                    <label class="label-format padding-format">Expense Date</label><br>
+                        <mat-form-field class="full-width padding-format">
+                            <mat-label>Choose a date</mat-label>
+                            <input 
+                            [(ngModel)]="expense.expenseDate"
+                            name="expenseDate"
+                            matInput [matDatepicker]="picker" />
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field><br>
+
+                    <div class="container text-center">
+                        <button mat-raised-button color="primary" type="submit">Submit</button>
+                        <button class="margin-left" mat-raised-button color="accent" type="reset">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
