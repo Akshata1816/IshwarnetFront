@@ -1,3 +1,4 @@
+/* user-details.component.css */
 mat-tab-group {
     margin-top: 20px;
   }
@@ -27,13 +28,16 @@ mat-card:first-child {
   width: 100%;
 }
 
-
 .label-format{
-    font-size: 15px;
-    padding-bottom: 5px;
-    
+  font-size: 15px;
+  padding-bottom: 5px;
+  
 }
 .padding-format{
-    padding-left: 10%;
-    padding-bottom: 10px;
+  padding-left: 10%;
+  padding-bottom: 10px;
+}
+
+.title-padding{
+  padding-top: 10px;
 }

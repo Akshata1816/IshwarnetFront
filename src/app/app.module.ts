@@ -12,7 +12,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import {MatIconModule} from '@angular/material/icon';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorProviders } from './services/auth.interceptor';
@@ -37,6 +37,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
 import { ExpenseComponent } from './pages/admin/expense/expense.component';
+import { ViewCustomerPlanComponent } from './pages/admin/view-customer-plan/view-customer-plan.component';
+import { EditCustomerComponent } from './pages/admin/edit-customer/edit-customer.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { ExpenseComponent } from './pages/admin/expense/expense.component';
     ViewPackagesComponent,
     ViewCustomersComponent,
     PackageToCustomerComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    ViewCustomerPlanComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +76,7 @@ import { ExpenseComponent } from './pages/admin/expense/expense.component';
     NgIf, NgFor,
     MatMenuModule,
     RouterModule,
+    MatTabsModule,
     MatSlideToggleModule,
     MatExpansionModule,
     MatPaginatorModule,

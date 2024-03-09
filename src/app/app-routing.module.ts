@@ -9,6 +9,8 @@ import { ViewPackagesComponent } from './pages/admin/view-packages/view-packages
 import { PackageToCustomerComponent } from './pages/admin/package-to-customer/package-to-customer.component';
 import { ViewCustomersComponent } from './pages/admin/view-customers/view-customers.component';
 import { ExpenseComponent } from './pages/admin/expense/expense.component';
+import { ViewCustomerPlanComponent } from './pages/admin/view-customer-plan/view-customer-plan.component';
+import { EditCustomerComponent } from './pages/admin/edit-customer/edit-customer.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, pathMatch: 'full'},
@@ -31,6 +33,12 @@ const routes: Routes = [
     },
     {
       path: 'expense', component: ExpenseComponent
+    },
+    {
+      path: 'viewcustomersplan', component: ViewCustomerPlanComponent
+    },
+    {
+      path: 'customer/:customer_id', component: EditCustomerComponent
     }
   ]},
 ];

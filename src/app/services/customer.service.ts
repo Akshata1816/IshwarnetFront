@@ -18,4 +18,13 @@ export class CustomerService {
   public viewCustomers(){
     return this._http.get(`${baseUrl}/customer/getAll`);
   }
+
+  public getCustomer(id: any){
+    return this._http.get(`${baseUrl}/customer/${id}`);
+  }
+
+  public updateCustomer(customer:any){
+    return this._http.put(`${baseUrl}/customer/update`,customer)
+  }
+
 }

@@ -4,42 +4,47 @@
             <div class="col-md-12">
                 <h1 style="padding-bottom: 15px; padding-left: 8%;">Assign Package to Customer</h1>
         
-                
-                <form>
+                {{customerPlan | json}}
+                <form (ngSubmit)="formSubmit()">
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="label-format padding-format">Username</label><br>
+                            <label class="label-format padding-format">Customer Name</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <mat-label>Custmer Name</mat-label>
                                 <input 
                                 required
+                                [(ngModel)]="customerPlan.customer"
+                                name="customer_name"
                                 matInput placeholder="Enter here" 
-                                [matAutocomplete]="auto"/>
-                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                    <mat-option *ngFor="let c of customers" [value]="c.customer_id">
-                                      {{c.username}}
+                                [matAutocomplete]="auto"
+                                />
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onCustomerSelected($event)" [displayWith]="displayCustomerName">
+                                    <mat-option *ngFor="let c of customers" [value]="c">
+                                      {{c.customer_name}}
                                     </mat-option>
                                   </mat-autocomplete>
                             </mat-form-field><br>  
                             
                             <label class="label-format padding-format">Start Date</label><br>
-                            <mat-form-field class="full-width padding-format">
-                                <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker" />
+                            <mat-form-field class="label-format padding-format">
+                               <input required
+                                [(ngModel)]="customerPlan.startDate"
+                                name="startDate"
+                                matInput [matDatepicker]="picker" />
                                 <mat-hint>MM/DD/YYYY</mat-hint>
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field><br>
 
-                            <label class="label-format padding-format">Package Type </label><br>
+                            <!-- <label class="label-format padding-format">Package Type </label><br>
                             <mat-radio-group class="full-width padding-format">
                             <mat-radio-button value="M">Monthly</mat-radio-button><br>
                             <mat-radio-button value="Q" class="full-width padding-format">Quarterly</mat-radio-button><br>
                             <mat-radio-button value="H" class="full-width padding-format">Half-Yearly</mat-radio-button><br>
                             <mat-radio-button value="Y" class="full-width padding-format">Yearly</mat-radio-button><br>
-                            </mat-radio-group>
+                            </mat-radio-group> -->
 
-                            <label class="label-format padding-format">End Date</label><br>
+                            <!-- <label class="label-format padding-format">End Date</label><br>
                             <mat-form-field class="full-width padding-format">
                                   <mat-label>Choose a date</mat-label>
                                   <input matInput [matDatepicker]="picker">
@@ -47,73 +52,111 @@
                                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                   <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field><br>
- 
+  -->
                         </div>
                         <div class="col-md-4">
                             <label class="label-format padding-format">Package Name</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
-                                <mat-label>Username</mat-label>
-                                <input 
-                                required matInput placeholder="Enter here">
+                                <mat-label>Package Name</mat-label>
+                                <input required 
+                                    [(ngModel)]="customerPlan.plan"
+                                    name="plan_name"
+                                    matInput placeholder="Enter here"
+                                    [matAutocomplete]="autop" 
+                                />
+                                <mat-autocomplete autoActiveFirstOption #autop="matAutocomplete" (optionSelected)="onPlanSelected($event)" [displayWith]="displayPlanName">
+                                    <mat-option *ngFor="let p of packages" [value]="p">
+                                      {{p.plan_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
                             </mat-form-field><br>
                             
-                            <label class="label-format padding-format">Customer Amount To Paid</label><br>
+                            <!-- <label class="label-format padding-format">Customer Amount To Paid</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <mat-label>Customer Amount To Paid</mat-label>
                                 <input 
                                 required matInput placeholder="Enter here">
-                            </mat-form-field>
+                            </mat-form-field> -->
 
                             <label class="label-format padding-format">Discount</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <input type="number"
+                                [(ngModel)]="customerPlan.discount"
+                                    name="discount"
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
                             </mat-form-field>
 
-                            <label class="label-format padding-format"> Total Amount</label><br>
+                            <!-- <label class="label-format padding-format"> Total Amount</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <input type="number"
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
                         </div>
 
                         <div class="col-md-4">
 
-                            <label class="label-format padding-format"> Paid Amount</label><br>
+                            <!-- <label class="label-format padding-format"> Paid Amount</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <input type="number"
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
-                            <label class="label-format padding-format"> Recently Paid</label><br>
+                            <!-- <label class="label-format padding-format"> Recently Paid</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <input type="number"
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
-                            <label class="label-format padding-format"> Remaining Amount</label><br>
+                            <!-- <label class="label-format padding-format"> Remaining Amount</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <input type="number"
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
                             <label class="label-format padding-format">Comments</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <mat-label>Comments</mat-label>
-                                <textarea 
-                                required matInput placeholder="Enter here"></textarea>
+                                <textarea  
+                                [(ngModel)]="customerPlan.comments"
+                                    name="comments"
+                                matInput placeholder="Enter here"></textarea>
                             </mat-form-field><br>
+
+
+                            <label class="label-format padding-format">Package Type </label><br>
+                            <label class="full-width padding-format">
+                                <input type="radio" [(ngModel)]="customerPlan.packageType" name="packageType" value="MONTHLY">
+                                Monthly
+                            </label><br>
+                            <label class="full-width padding-format">
+                                <input type="radio" [(ngModel)]="customerPlan.packageType" name="packageType" value="QUARTERLY">
+                                Quarterly
+                            </label><br>
+                            <label class="full-width padding-format">
+                                <input type="radio" [(ngModel)]="customerPlan.packageType" name="packageType" value="HALF-YEARLY">
+                                Half-Yearly
+                            </label><br>
+                            <label class="full-width padding-format">
+                                <input type="radio" [(ngModel)]="customerPlan.packageType" name="packageType" value="YEARLY">
+                                Yearly
+                            </label><br>
+                            <!-- <mat-radio-group class="full-width padding-format">
+                            <mat-radio-button [(ngModel)]="customerPlan.packageType" name="packageType" value="MONTHLY">Monthly</mat-radio-button><br>
+                            <mat-radio-button [(ngModel)]="customerPlan.packageType" name="packageType" value="QUARTERLY" class="full-width padding-format">Quarterly</mat-radio-button><br>
+                            <mat-radio-button [(ngModel)]="customerPlan.packageType" name="packageType" value="HALF-YEARLY" class="full-width padding-format">Half-Yearly</mat-radio-button><br>
+                            <mat-radio-button [(ngModel)]="customerPlan.packageType" name="packageType" value="YEARLY" class="full-width padding-format">Yearly</mat-radio-button><br>
+                            </mat-radio-group> -->
                         </div>
                         
                     </div>

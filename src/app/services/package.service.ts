@@ -18,4 +18,8 @@ export class PackageService {
   public addPackage(package1: any) {
     return this._http.post(`${baseUrl}/plan/add`, package1);
   }
+
+  public viewPackageType(code:any) {
+    return this._http.get(`${baseUrl}/plan/package-type/${code}`);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,20 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit{
 
 constructor(private snack:MatSnackBar, private login:LoginService){}
-
+// loginData : FormGroup | undefined;
 loginData = {
-  username:'',
+  username: '',
   password:'',
 };
 
-ngOnInit(): void {}
+ngOnInit(): void {
+// this.loginData = new FormGroup({
+//   username: new FormControl("", Validators.required),
+//   password: new FormControl("", Validators.required),
+// });
+
+
+}
 
 formSubmit(){
   console.log('login form submit');

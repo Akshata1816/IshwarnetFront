@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerService } from 'src/app/services/customer.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-customer',
@@ -10,6 +11,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomerComponent {
 
   customer= {
+    customer_id:'',
     customer_name:'',
 	  username:'',
 	  mob_number:'',
@@ -56,8 +58,13 @@ export class CustomerComponent {
 
     this._customer.addCustomer(this.customer).subscribe(
       (data:any)=>{
-        this.snack.open("Customer Added Sucessfuly !!", "ok",{
-          duration:3000
+        // this.snack.open("Customer Added Sucessfuly !!", "ok",{
+        //   duration:3000
+        // });
+        Swal.fire({
+          icon: 'success',
+          title: 'Customer updated successfully',
+          allowOutsideClick: false,
         });
       },
       (error)=>

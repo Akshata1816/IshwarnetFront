@@ -1,0 +1,215 @@
+<!-- user-details.component.html -->
+<div>
+    <mat-card>
+      <mat-card-header class="custom-title" style="border-bottom: 1px solid gray; background-color: rgb(201, 199, 199)">
+        <mat-card-title style="padding-top: 10px;">General Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">Custmer Name</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Custmer Name</mat-label>
+                                    <input 
+                                    
+                                    name="customer_name"
+                                    required
+                                    matInput placeholder="Enter here" />
+                                </mat-form-field><br>
+
+                                  
+                                
+                                <label class="label-format padding-format">Mobile Number</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Mobile Number</mat-label>
+                                    <input 
+                                    
+                                    name="mob_number"
+                                    required matInput placeholder="Enter here">
+                                </mat-form-field>
+
+                                <label class="label-format padding-format">Alternate Mobile Number</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Alternate Mobile Number</mat-label>
+                                    <input
+                                    
+                                    name="alt_mob_number"
+                                    matInput placeholder="Enter here">
+                                </mat-form-field>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">Address</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Address</mat-label>
+                                    <input 
+                                    
+                                    name="address"
+                                    required matInput placeholder="Enter here">
+                                </mat-form-field>
+
+                                <label class="label-format padding-format">City</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>City</mat-label>
+                                    <input 
+                                    
+                                    name="city"
+                                    matInput placeholder="Enter here">
+                                </mat-form-field>
+
+                                <label class="label-format padding-format">Customer Name</label><br>
+                            <mat-form-field class="full-width padding-format" appearance="outline">
+                                <mat-label>Package Type</mat-label>
+                                <input 
+                                required
+                                
+                                name="customer_name"
+                                matInput placeholder="Select Package Type" 
+                                [matAutocomplete]="package"
+                                />
+                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete">
+                                    <mat-option *ngFor="let p of packageType" [value]="p">
+                                      {{p.name}}
+                                    </mat-option>
+                                  </mat-autocomplete>
+                            </mat-form-field><br>  
+                            
+
+                                <!-- <mat-slide-toggle class="padding-format"
+                                    
+                                    name="status"
+                                    [checked]="true"
+                                    color="primary">Status</mat-slide-toggle> -->
+                            </div>
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">Username</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input 
+                                    
+                                    name="username"
+                                    required matInput placeholder="Enter here">
+                                </mat-form-field><br> 
+
+                                <label class="label-format padding-format">Pincode</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                    <mat-label>Pincode</mat-label>
+                                    <input 
+                                    
+                                    name="pincode"
+                                    matInput placeholder="Enter here">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                    
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card>
+      <mat-card-header class="custom-title" style="border-bottom: 1px solid gray; background-color: rgb(201, 199, 199)">
+        <mat-card-title style="padding-top: 10px;">Package Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">Package Name</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                <mat-label>Package Name</mat-label>
+                                <input required 
+                                    [(ngModel)]="customerPlan.plan"
+                                    name="plan_name"
+                                    matInput placeholder="Enter here"
+                                    [matAutocomplete]="autop" 
+                                />
+                                <mat-autocomplete autoActiveFirstOption #autop="matAutocomplete" (optionSelected)="onPlanSelected($event)" [displayWith]="displayPlanName">
+                                    <mat-option *ngFor="let p of packages" [value]="p">
+                                      {{p.plan_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                </mat-form-field><br>
+                            
+
+                                <label class="label-format padding-format">Discount</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                <input type="number"
+                                
+                                    name="discount"
+                                matInput class="example-right-align" placeholder="0">
+                                <span matTextPrefix>₹&nbsp;</span>
+                                <span matTextSuffix>.00</span>
+                                </mat-form-field><br>
+
+                                <label class="label-format padding-format">Comments</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                <mat-label>Comments</mat-label>
+                                <textarea  
+                                [(ngModel)]="customerPlan.comments"
+                                    name="comments"
+                                matInput placeholder="Enter here"></textarea>
+                                </mat-form-field><br>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">Start Date</label><br>
+                                <mat-form-field class="label-format padding-format">
+                               <input required
+                                [(ngModel)]="customerPlan.startDate"
+                                name="startDate"
+                                matInput [matDatepicker]="picker" />
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field><br>
+
+                                <label class="label-format padding-format">Remaining Amount</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                <input type="number" readonly 
+                                
+                                    name="discount"
+                                matInput class="example-right-align" placeholder="0">
+                                <span matTextPrefix>₹&nbsp;</span>
+                                <span matTextSuffix>.00</span>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="label-format padding-format">End Date</label><br>
+                                <mat-form-field class="label-format padding-format">
+                               <input required
+                                
+                                name="startDate"
+                                matInput [matDatepicker]="picker" />
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field><br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                  
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Activity Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

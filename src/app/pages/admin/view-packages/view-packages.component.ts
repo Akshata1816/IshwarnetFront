@@ -38,6 +38,7 @@ export class ViewPackagesComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  
 
 
   constructor(private _package:PackageService, private snack:MatSnackBar) {}

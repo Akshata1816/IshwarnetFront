@@ -34,3 +34,9 @@
   input.example-right-align {
     appearance: textfield;
   }
+
+  .padding-format3{
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+}
