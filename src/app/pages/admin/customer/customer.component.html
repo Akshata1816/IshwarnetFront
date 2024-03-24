@@ -63,6 +63,22 @@
                                 matInput placeholder="Enter here">
                             </mat-form-field>
 
+                            <label class="label-format padding-format">Package Type</label><br>
+                            <mat-form-field class="full-width padding-format" appearance="outline">
+                                <mat-label>Package Type</mat-label>
+                                <input 
+                                required
+                                
+                                name="customer_name"
+                                matInput placeholder="Select Package Type" 
+                                [matAutocomplete]="package"
+                                />
+                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete">
+                                    <mat-option *ngFor="let p of packageType" [value]="p">
+                                      {{p.name}}
+                                    </mat-option>
+                                  </mat-autocomplete>
+                            </mat-form-field><br>  
                             
 
                             <!-- <mat-slide-toggle class="padding-format"

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerService } from 'src/app/services/customer.service';
+import { PackageService } from 'src/app/services/package.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -9,7 +10,8 @@ import Swal from 'sweetalert2'
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent {
-
+  code: string = '';
+  packageType: any[] = [];
   customer= {
     customer_id:'',
     customer_name:'',
@@ -22,7 +24,11 @@ export class CustomerComponent {
 	  status:'true'
   }
 
-  constructor(private _customer:CustomerService, private snack:MatSnackBar) {}
+  constructor(private _customer:CustomerService, private snack:MatSnackBar, private _plan:PackageService) {}
+
+  ngOnInit() {
+    this.packageTypeList();
+  }
 
   formSubmit() 
   {
@@ -76,4 +82,19 @@ export class CustomerComponent {
       }
     );
   }
+
+  packageTypeList() {
+    this.code = "PACKAGE";
+    this._plan.viewPackageType(this.code).subscribe(
+      (data:any)=>{
+        this.packageType=data;
+        console.log(this.packageType);
+      },
+      (error)=>{
+        console.log(error);
+        this.snack.open("Error !!","Ok");
+      }
+    )
+  }
+
 }

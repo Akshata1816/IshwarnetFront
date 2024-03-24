@@ -61,7 +61,7 @@
                                     matInput placeholder="Enter here">
                                 </mat-form-field>
 
-                                <label class="label-format padding-format">Customer Name</label><br>
+                                <label class="label-format padding-format">Package Type</label><br>
                             <mat-form-field class="full-width padding-format" appearance="outline">
                                 <mat-label>Package Type</mat-label>
                                 <input 
@@ -180,7 +180,18 @@
                                 matInput class="example-right-align" placeholder="0">
                                 <span matTextPrefix>₹&nbsp;</span>
                                 <span matTextSuffix>.00</span>
-                                </mat-form-field>
+                                </mat-form-field><br>
+
+                                
+                                <label class="label-format padding-format">Recently Paid</label><br>
+                                <mat-form-field class="full-width padding-format" appearance="outline">
+                                <input type="number"
+                                
+                                    name="paid"
+                                matInput class="example-right-align" placeholder="0">
+                                <span matTextPrefix>₹&nbsp;</span>
+                                <span matTextSuffix>.00</span>
+                                </mat-form-field><br>
                             </div>
                             <div class="col-md-4">
                                 <label class="label-format padding-format">End Date</label><br>
@@ -193,8 +204,12 @@
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field><br>
-                            </div>
 
+                            </div>
+                            <div class="container text-center">
+                                <button mat-raised-button color="primary" type="submit">Update</button>
+                                <button class="margin-left" mat-raised-button color="primary" type="submit">Renew</button>
+                            </div>
                         </div>
                     </div>
                 </div>
