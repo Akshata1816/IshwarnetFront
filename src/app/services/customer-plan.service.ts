@@ -18,4 +18,12 @@ export class CustomerPlanService {
   public viewCustomerPlans(){
     return this._http.get(`${baseUrl}/customer-plan/getList`);
   }
+
+  public viewCustomerPlansActive(customerId: any){
+    return this._http.get(`${baseUrl}/customer-plan/getList/status/${customerId}`);
+  }
+
+  public viewCustomerPlansHistory(customerId: any){
+    return this._http.get(`${baseUrl}/customer-plan/geCustomerList/${customerId}`);
+  }
 }

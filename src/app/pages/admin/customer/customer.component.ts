@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerService } from 'src/app/services/customer.service';
 import { PackageService } from 'src/app/services/package.service';
 import Swal from 'sweetalert2'
+
+interface Package{
+  code: string,
+  name: string,
+  predefinedId: number,
+}
 
 @Component({
   selector: 'app-customer',
@@ -21,7 +28,8 @@ export class CustomerComponent {
 	  address:'',
 	  city:'',
 	  pincode:'',
-	  status:'true'
+	  status:'true',
+    packageType: {} as Package,
   }
 
   constructor(private _customer:CustomerService, private snack:MatSnackBar, private _plan:PackageService) {}
@@ -69,7 +77,7 @@ export class CustomerComponent {
         // });
         Swal.fire({
           icon: 'success',
-          title: 'Customer updated successfully',
+          title: 'Customer Added successfully',
           allowOutsideClick: false,
         });
       },
@@ -95,6 +103,17 @@ export class CustomerComponent {
         this.snack.open("Error !!","Ok");
       }
     )
+  }
+
+  onPlanSelected(event: MatAutocompleteSelectedEvent): void {
+    // event.option.value will contain the selected customer object
+    this.customer.packageType = event.option.value;
+    // this.customer.packageType.plan_name = event.option.value.plan_name;
+  }
+
+  displayPlanName(packageType: any): string {
+      return packageType ? packageType.name : '';  // Display the customer's name
+    
   }
 
 }

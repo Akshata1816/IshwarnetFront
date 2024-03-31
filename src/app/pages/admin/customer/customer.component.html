@@ -73,7 +73,7 @@
                                 matInput placeholder="Select Package Type" 
                                 [matAutocomplete]="package"
                                 />
-                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete">
+                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete" (optionSelected)="onPlanSelected($event)" [displayWith]="displayPlanName">
                                     <mat-option *ngFor="let p of packageType" [value]="p">
                                       {{p.name}}
                                     </mat-option>

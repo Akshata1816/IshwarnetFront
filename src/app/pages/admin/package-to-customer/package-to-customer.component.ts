@@ -158,7 +158,7 @@ export class PackageToCustomerComponent implements OnInit{
 
   // Function to set the date format
   getDatePickerFormat() {
-    return 'DD/MM/YYYY'; // This sets the date format as DD/MM/YYYY
+    return 'dd/MM/YYYY'; // This sets the date format as DD/MM/YYYY
   }
 
   onDateChange(event: any): void {

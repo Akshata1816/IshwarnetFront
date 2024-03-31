@@ -9,13 +9,14 @@
             <div class="container">
                 <div class="row" style="margin-top: 25px">
                     <div class="col-md-12">
+                        <form (ngSubmit)="formSubmit()">
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="label-format padding-format">Custmer Name</label><br>
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Custmer Name</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.customer_name"
                                     name="customer_name"
                                     required
                                     matInput placeholder="Enter here" />
@@ -27,7 +28,7 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Mobile Number</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.mob_number"
                                     name="mob_number"
                                     required matInput placeholder="Enter here">
                                 </mat-form-field>
@@ -36,7 +37,7 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Alternate Mobile Number</mat-label>
                                     <input
-                                    
+                                    [(ngModel)]="customer.alt_mob_number"
                                     name="alt_mob_number"
                                     matInput placeholder="Enter here">
                                 </mat-form-field>
@@ -47,7 +48,7 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Address</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.address"
                                     name="address"
                                     required matInput placeholder="Enter here">
                                 </mat-form-field>
@@ -56,7 +57,7 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>City</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.city"
                                     name="city"
                                     matInput placeholder="Enter here">
                                 </mat-form-field>
@@ -66,12 +67,12 @@
                                 <mat-label>Package Type</mat-label>
                                 <input 
                                 required
-                                
-                                name="customer_name"
+                                [(ngModel)]="customer.packageType"
+                                name="packageType"
                                 matInput placeholder="Select Package Type" 
                                 [matAutocomplete]="package"
                                 />
-                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete">
+                                <mat-autocomplete autoActiveFirstOption #package="matAutocomplete" (optionSelected)="onPlanSelected($event)" [displayWith]="displayPlanName">
                                     <mat-option *ngFor="let p of packageType" [value]="p">
                                       {{p.name}}
                                     </mat-option>
@@ -90,7 +91,7 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Username</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.username"
                                     name="username"
                                     required matInput placeholder="Enter here">
                                 </mat-form-field><br> 
@@ -99,20 +100,26 @@
                                 <mat-form-field class="full-width padding-format" appearance="outline">
                                     <mat-label>Pincode</mat-label>
                                     <input 
-                                    
+                                    [(ngModel)]="customer.pincode"
                                     name="pincode"
                                     matInput placeholder="Enter here">
                                 </mat-form-field>
+
+                            </div>
+                            <div class="container text-center">
+                                <button mat-raised-button color="primary" type="submit">Update</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>                    
+        </div>  
+        {{customer|json}}                  
       </mat-card-content>
     </mat-card>
   
-    <mat-card>
+    <mat-card *ngIf="customerActiveList && customerActiveList.length > 0">
       <mat-card-header class="custom-title" style="border-bottom: 1px solid gray; background-color: rgb(201, 199, 199)">
         <mat-card-title style="padding-top: 10px;">Package Information</mat-card-title>
       </mat-card-header>
@@ -217,14 +224,181 @@
         </div>                  
       </mat-card-content>
     </mat-card>
+
+    <mat-card *ngIf="customerActiveList == null || customerActiveList.length == 0">
+        <mat-card-header class="custom-title" style="border-bottom: 1px solid gray; background-color: rgb(201, 199, 199)">
+          <mat-card-title style="padding-top: 10px;">Package Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="bootstrap-wrapper">
+              <div class="container">
+                  <div class="row" style="margin-top: 25px">
+                      <div class="col-md-12">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="label-format padding-format">Package Name</label><br>
+                                  <mat-form-field class="full-width padding-format" appearance="outline">
+                                  <mat-label>Package Name</mat-label>
+                                  <input required 
+                                      [(ngModel)]="customerPlan.plan"
+                                      name="plan_name"
+                                      matInput placeholder="Enter here"
+                                      [matAutocomplete]="autop" 
+                                  />
+                                  <mat-autocomplete autoActiveFirstOption #autop="matAutocomplete" (optionSelected)="onPlanSelected($event)" [displayWith]="displayPlanName">
+                                      <mat-option *ngFor="let p of packages" [value]="p">
+                                        {{p.plan_name}}
+                                      </mat-option>
+                                  </mat-autocomplete>
+                                  </mat-form-field><br>
+                              
+  
+                                  <label class="label-format padding-format">Discount</label><br>
+                                  <mat-form-field class="full-width padding-format" appearance="outline">
+                                  <input type="number"
+                                  
+                                      name="discount"
+                                  matInput class="example-right-align" placeholder="0">
+                                  <span matTextPrefix>₹&nbsp;</span>
+                                  <span matTextSuffix>.00</span>
+                                  </mat-form-field><br>
+  
+                                  <label class="label-format padding-format">Comments</label><br>
+                                  <mat-form-field class="full-width padding-format" appearance="outline">
+                                  <mat-label>Comments</mat-label>
+                                  <textarea  
+                                  [(ngModel)]="customerPlan.comments"
+                                      name="comments"
+                                  matInput placeholder="Enter here"></textarea>
+                                  </mat-form-field><br>
+                              </div>
+  
+                              <div class="col-md-4">
+                                  <label class="label-format padding-format">Start Date</label><br>
+                                  <mat-form-field class="label-format padding-format">
+                                 <input required
+                                  [(ngModel)]="customerPlan.startDate"
+                                  name="startDate"
+                                  matInput [matDatepicker]="picker" />
+                                  <mat-hint>MM/DD/YYYY</mat-hint>
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field><br>
+  
+                                  <label class="label-format padding-format">Remaining Amount</label><br>
+                                  <mat-form-field class="full-width padding-format" appearance="outline">
+                                  <input type="number" readonly 
+                                  
+                                      name="discount"
+                                  matInput class="example-right-align" placeholder="0">
+                                  <span matTextPrefix>₹&nbsp;</span>
+                                  <span matTextSuffix>.00</span>
+                                  </mat-form-field><br>
+  
+                                  
+                                  <label class="label-format padding-format">Recently Paid</label><br>
+                                  <mat-form-field class="full-width padding-format" appearance="outline">
+                                  <input type="number"
+                                  
+                                      name="paid"
+                                  matInput class="example-right-align" placeholder="0">
+                                  <span matTextPrefix>₹&nbsp;</span>
+                                  <span matTextSuffix>.00</span>
+                                  </mat-form-field><br>
+                              </div>
+                              <div class="col-md-4">
+                                  <label class="label-format padding-format">End Date</label><br>
+                                  <mat-form-field class="label-format padding-format">
+                                 <input required
+                                  
+                                  name="startDate"
+                                  matInput [matDatepicker]="picker" />
+                                  <mat-hint>MM/DD/YYYY</mat-hint>
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field><br>
+  
+                              </div>
+                              <div class="container text-center">
+                                  <button mat-raised-button color="primary" type="submit">Save</button>
+                                  <!-- <button class="margin-left" mat-raised-button color="primary" type="submit">Renew</button> -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>                  
+        </mat-card-content>
+      </mat-card>
   
     <mat-card>
       <mat-card-header>
         <mat-card-title>Activity Information</mat-card-title>
       </mat-card-header>
       <mat-card-content>
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+                <!-- Position Column -->
+                <ng-container matColumnDef="customerPlanId">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element; let i=index"> {{(paginatorRef.pageIndex*paginatorRef.pageSize)+(i+1)}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="customer_name">
+                  <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.customer.customer_name}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="plan_name">
+                    <th mat-header-cell *matHeaderCellDef> Package Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.plan.plan_name}} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="remainingAmount">
+                    <th mat-header-cell *matHeaderCellDef> Remaining Amount </th>
+                    <td mat-cell *matCellDef="let element"> {{element.remainingAmount}} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="endDate">
+                    <th mat-header-cell *matHeaderCellDef> End Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.endDate | date:'dd/MM/yyyy' }} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="code">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status.code}} </td>
+                  </ng-container>
+            
+                  <!-- <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">  
+                      <button mat-icon-button color="warn">
+                      <mat-icon>delete</mat-icon>
+                      </button>
+                      <button mat-icon-button color="primary" style="padding-left: 10px;">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container> -->
+              
+                    <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                    <!-- <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr> -->
+              </table>    
+            </div>
+          </div>
         
       </mat-card-content>
+      <mat-paginator style="width: 100%;"
+                [pageSizeOptions]="[10, 20, 30]" 
+                aria-label="Select page" #paginatorRef>
+        </mat-paginator>
     </mat-card>
   </div>
   
