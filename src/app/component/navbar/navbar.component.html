@@ -64,35 +64,44 @@
   <mat-sidenav #sidenav mode="side" class="set-width" opened>
     <mat-action-list style="padding-left: 10px;">
 
-      <button mat-list-item routerLink="/accounts" > <mat-icon style="padding-top: 5px;"> dashboard </mat-icon> <span style="padding-left: 15px;" class="font-size">Dashboard</span> </button>
+      <button mat-list-item routerLink="/accounts" style="padding-left: 25px;"> <mat-icon style="padding-top: 5px;"> dashboard </mat-icon> <span style="padding-left: 15px;" class="font-size">Dashboard</span> </button>
       
-      <!-- <mat-expansion-panel [class.mat-elevation-z0]="true">
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header style="font-size: 12pt; font-family: Arial, sans-serif, Roboto;">
-          <mat-icon style="padding-left: -10px;"> auto_stories </mat-icon>Package
-          
+          <mat-icon> auto_stories </mat-icon>
+          <span style="padding-left: 15px; padding-top: 5px;" class="font-size"> Package </span>
         </mat-expansion-panel-header>
-            <button mat-list-item routerLink="#">
-                <mat-icon>apple</mat-icon><span>iOS</span>
+            <button mat-list-item routerLink="/dashboard/addpackage">
+                <mat-icon style="padding-top: 5px;">add</mat-icon><span style="padding-left: 15px;" class="font-size">Add Package</span>
             </button>
-            <button mat-list-item routerLink="#">
-                <mat-icon>android</mat-icon><span>Android</span>
+            <button mat-list-item routerLink="/dashboard/viewpackage">
+                <mat-icon style="padding-top: 5px;">view_list</mat-icon><span style="padding-left: 15px;" class="font-size">View Package</span>
             </button>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header style="font-size: 12pt; font-family: Arial, sans-serif, Roboto;">
+          <mat-icon> person_add </mat-icon>
+          <span style="padding-left: 15px; padding-top: 5px;" class="font-size"> Customer </span>
+        </mat-expansion-panel-header>
+            <button mat-list-item routerLink="/dashboard/customer">
+                <mat-icon style="padding-top: 5px; width: 20px;">add</mat-icon><span style="padding-left: 15px;" class="font-size">Add Customer</span>
+            </button>
+            <button mat-list-item routerLink="/dashboard/viewcustomers">
+                <mat-icon style="padding-top: 5px; width: 20px;">view_list</mat-icon><span style="padding-left: 15px;" class="font-size">View Customer</span>
+            </button>
+      </mat-expansion-panel>
       
-      <button mat-list-item [class.mat-elevation-z0]="true"> 
+      <!-- <button mat-list-item routerLink="/dashboard/addpackage" > 
         <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> 
-        <span style="padding-left: 15px;"> Package <mat-icon class="ml-1" style="padding-top: 5px;">arrow_drop_down</mat-icon></span> 
-      
-      </button>
- -->
-      
-      <button mat-list-item routerLink="/dashboard/addpackage" > <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> <span style="padding-left: 15px;" class="font-size"> Add Package </span> </button>
+        <span style="padding-left: 15px;" class="font-size"> Add Package 
+        </span> </button>
       <button mat-list-item routerLink="/dashboard/viewpackage" > <mat-icon style="padding-top: 5px;"> auto_stories </mat-icon> <span style="padding-left: 15px;" class="font-size"> View Packages </span> </button>
       <button mat-list-item routerLink="/dashboard/customer"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size">Customer</span>  </button>
       <button mat-list-item routerLink="/dashboard/viewcustomers"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size"> View Customers </span>  </button>
       <button mat-list-item routerLink="/dashboard/packagetocustomer"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size"> Assign Package </span>  </button>
       <button mat-list-item routerLink="/dashboard/viewcustomersplan"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size"> View Customer Package </span>  </button>
-      <button mat-list-item routerLink="/dashboard/expense"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size"> Expenses </span>  </button>
+      <button mat-list-item routerLink="/dashboard/expense"><mat-icon style="padding-top: 5px;"> person_add </mat-icon> <span style="padding-left: 15px;" class="font-size"> Expenses </span>  </button> -->
 
       
     </mat-action-list>
