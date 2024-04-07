@@ -68,8 +68,8 @@
                                 <mat-label>Package Type</mat-label>
                                 <input 
                                 required
-                                
-                                name="customer_name"
+                                [(ngModel)]="customer.packageType"
+                                name="packageType"
                                 matInput placeholder="Select Package Type" 
                                 [matAutocomplete]="package"
                                 />

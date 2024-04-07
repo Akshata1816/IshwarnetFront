@@ -18,7 +18,7 @@ interface Package{
 })
 export class CustomerComponent {
   code: string = '';
-  packageType: any[] = [];
+  packageType: any[]=[];
   customer= {
     customer_id:'',
     customer_name:'',
@@ -92,11 +92,11 @@ export class CustomerComponent {
   }
 
   packageTypeList() {
-    this.code = "PACKAGE";
+    this.code = 'PACKAGE';
     this._plan.viewPackageType(this.code).subscribe(
       (data:any)=>{
         this.packageType=data;
-        console.log(this.packageType);
+        console.log(this.packageType, "Package type");
       },
       (error)=>{
         console.log(error);

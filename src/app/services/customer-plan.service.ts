@@ -14,6 +14,11 @@ export class CustomerPlanService {
     return this._http.post(`${baseUrl}/customer-plan/save`,customerplan);
   }
 
+  //add new customer plan
+  public updateCustomerPlan(customerplan:any) {
+    return this._http.put(`${baseUrl}/customer-plan/update`,customerplan);
+  }
+
   //load customer plan
   public viewCustomerPlans(){
     return this._http.get(`${baseUrl}/customer-plan/getList`);
